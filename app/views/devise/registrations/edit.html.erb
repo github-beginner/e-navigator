@@ -23,6 +23,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :school %><br />
+    <%= f.text_field :school %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
     <% if @minimum_password_length %>
