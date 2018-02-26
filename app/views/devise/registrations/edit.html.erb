@@ -18,6 +18,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.select :sex, User.sexes.keys.to_a %>
+  </div>
+
+  <div class="field">
     <%= f.label :birthday %><br />
     <%= f.date_select :birthday, :use_month_numbers => true %>
   </div>
