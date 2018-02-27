@@ -15,7 +15,7 @@
 
   <div class="field">
     <%= f.label :sex %><br />
-    <%= f.select :sex, User.sexes.keys.to_a %>
+    <%= f.select :sex, User.sexes_i18n.keys.map{|k| [User.sexes_i18n[k], k]} %>
   </div>
 
   <div class="field">
