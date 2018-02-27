@@ -7,6 +7,18 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      user:
+        name: 名前
+        password: パスワード
+        password_confirmation: パスワード(確認)
+        email: メールアドレス
+        school: 学校名
+        birthday: 生年月日
+        sex: 性別
+        remember_me: 保存する
+    models:
+      user: ユーザー
   date:
     abbr_day_names:
     - 日
@@ -203,3 +215,4 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
     pm: 午後
+
