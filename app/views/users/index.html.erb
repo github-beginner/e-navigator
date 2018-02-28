@@ -1,2 +1,24 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>ユーザー一覧</h1>
+<table>
+  <thad>
+    <tr>
+      <th>名前</th>
+      <th>メールアドレス</th>
+      <th>年齢</th>
+      <th>性別</th>
+      <th>学校名</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name  %></td>
+        <td><%= user.email  %></td>
+        <td><%= user.birthday  %></td>
+        <td><%= user.sex_i18n  %></td>
+        <td><%= user.school  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
