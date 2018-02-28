@@ -17,6 +17,7 @@ ja:
         birthday: 生年月日
         sex: 性別
         remember_me: 保存する
+        current_password: 現在のパスワード
     models:
       user: ユーザー
   date:
