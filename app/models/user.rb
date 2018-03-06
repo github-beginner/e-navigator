@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   enum sex: { man:0, woman:1 }
+  has_many :interviews
 
   def age
     d1 = self.birthday.strftime("%Y%m%d").to_i

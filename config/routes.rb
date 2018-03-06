@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'interviews/:id', :to => 'interviews#index', :as => 'interviews'
+  resources :interviews
   get 'users', :to => 'users#index', :as => :user_root
   root :to => 'users#index'
   devise_for :users
