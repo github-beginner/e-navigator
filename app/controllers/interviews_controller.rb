@@ -14,7 +14,7 @@ class InterviewsController < ApplicationController
 
   # GET /interviews/new
   def new
-    @interview = Interview.new
+    @interview = current_user.interviews.new
   end
 
   # GET /interviews/1/edit
@@ -24,11 +24,11 @@ class InterviewsController < ApplicationController
   # POST /interviews
   # POST /interviews.json
   def create
-    @interview = Interview.new(interview_params)
+    @interview = current_user.interviews.new(interview_params)
 
     respond_to do |format|
       if @interview.save
-        format.html { redirect_to @interview, notice: 'Interview was successfully created.' }
+        format.html { redirect_to @interview, notice: '登録に成功しました。' }
         format.json { render :show, status: :created, location: @interview }
       else
         format.html { render :new }
@@ -64,11 +64,11 @@ class InterviewsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_interview
-      @interview = Interview.find(params[:id])
+      @interview = current_user.interviews.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interview_params
-      params.require(:interview).permit(:date, :availability, :user_id)
+      params.require(:interview).permit(:date)
     end
 end
