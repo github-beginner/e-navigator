@@ -42,7 +42,7 @@ class InterviewsController < ApplicationController
   def update
     respond_to do |format|
       if @interview.update(interview_params)
-        format.html { redirect_to @interview, notice: 'Interview was successfully updated.' }
+        format.html { redirect_to @interview, notice: '更新に成功しました。' }
         format.json { render :show, status: :ok, location: @interview }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class InterviewsController < ApplicationController
   def destroy
     @interview.destroy
     respond_to do |format|
-      format.html { redirect_to interviews_url, notice: 'Interview was successfully destroyed.' }
+      format.html { redirect_to interviews_url, notice: '削除に成功しました。' }
       format.json { head :no_content }
     end
   end

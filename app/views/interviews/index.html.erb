@@ -20,7 +20,7 @@
         <td><%= interview.date %></td>
         <td><%= interview.availability_i18n %></td>
         <td><%= link_to '編集', edit_interview_path(interview) %></td>
-        <td><%= link_to '削除', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '削除', interview, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
       </tr>
     <% end %>
   </tbody>
