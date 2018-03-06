@@ -19,9 +19,8 @@
       <tr>
         <td><%= interview.date %></td>
         <td><%= interview.availability_i18n %></td>
-        <td><%= interview.user %></td>
-        <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
-        <td><%= link_to 'Destroy', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '編集', edit_interview_path(interview) %></td>
+        <td><%= link_to '削除', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
