@@ -224,4 +224,9 @@ ja:
       sex:
         man: 男性
         woman: 女性
+    interview:
+      availability:
+        accept: 許可
+        reject: 拒否
+        reservation: 保留
 

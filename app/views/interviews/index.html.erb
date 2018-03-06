@@ -18,7 +18,7 @@
     <% @user.interviews.each do |interview| %>
       <tr>
         <td><%= interview.date %></td>
-        <td><%= interview.availability %></td>
+        <td><%= interview.availability_i18n %></td>
         <td><%= interview.user %></td>
         <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
         <td><%= link_to 'Destroy', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
