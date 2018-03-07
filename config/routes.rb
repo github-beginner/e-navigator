@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'interviews', :to => 'interviews#index', :as => 'interviews'
   resources :interviews
   get 'users', :to => 'users#index', :as => :user_root
   root :to => 'users#index'
