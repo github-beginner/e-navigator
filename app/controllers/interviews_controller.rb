@@ -5,7 +5,10 @@ class InterviewsController < ApplicationController
   # GET /interviews
   # GET /interviews.json
   def index
-    @user = current_user
+    @user = User.find(params[:id])
+    unless current_user == @user
+      render :index_for_others
+    end
   end
 
   # GET /interviews/1
@@ -60,6 +63,10 @@ class InterviewsController < ApplicationController
       format.html { redirect_to interviews_url, notice: '削除に成功しました。' }
       format.json { head :no_content }
     end
+  end
+
+  def index_for_others
+    @user = User.find_by(params[:user_id])
   end
 
   private

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<%= link_to "プロフィール",  edit_user_registration_path, method: :get %>
+<%= link_to "面接一覧",  interviews_path, method: :get %>
+<%= link_to "ログアウト",  destroy_user_session_path, method: :delete %>
+
+<h1><%= @user.name %>さんの面接一覧</h1>
+
+<p><span class="b">現在の面接日時:</span><%= @user.interviews.find_by(availability: 'accept') %></p>
+<p>面接日程を変更する場合は以下から選んでください。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.interviews.each do |interview| %>
+      <tr>
+        <td><%= link_to interview.date, interview, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '新規面接作成', new_interview_path %>
