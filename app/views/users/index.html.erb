@@ -23,6 +23,7 @@
         <td><%= user.age  %></td>
         <td><%= user.sex_i18n  %></td>
         <td><%= user.school  %></td>
+        <td><%= link_to "面接一覧",  interviews_path(id: user.id), method: :get %></td>
       </tr>
     <% end %>
   </tbody>
