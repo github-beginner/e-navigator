@@ -3,13 +3,11 @@ class InterviewsController < ApplicationController
   before_action :set_interview, only: [:show, :edit, :update, :destroy]
 
   # GET /interviews
-  # GET /interviews.json
   def index
     @user = current_user
   end
 
   # GET /interviews/1
-  # GET /interviews/1.json
   def show
   end
 
@@ -23,43 +21,28 @@ class InterviewsController < ApplicationController
   end
 
   # POST /interviews
-  # POST /interviews.json
   def create
     @interview = current_user.interviews.new(interview_params)
-
-    respond_to do |format|
-      if @interview.save
-        format.html { redirect_to @interview, notice: '登録に成功しました。' }
-        format.json { render :show, status: :created, location: @interview }
-      else
-        format.html { render :new }
-        format.json { render json: @interview.errors, status: :unprocessable_entity }
-      end
+    if @interview.save
+      redirect_to @interview, notice: '登録に成功しました。'
+    else
+      render :new 
     end
   end
 
   # PATCH/PUT /interviews/1
-  # PATCH/PUT /interviews/1.json
   def update
-    respond_to do |format|
-      if @interview.update(interview_params)
-        format.html { redirect_to @interview, notice: '更新に成功しました。' }
-        format.json { render :show, status: :ok, location: @interview }
-      else
-        format.html { render :edit }
-        format.json { render json: @interview.errors, status: :unprocessable_entity }
-      end
+    if @interview.update(interview_params)
+      redirect_to @interview, notice: '更新に成功しました。'
+    else
+      render :edit 
     end
   end
 
   # DELETE /interviews/1
-  # DELETE /interviews/1.json
   def destroy
     @interview.destroy
-    respond_to do |format|
-      format.html { redirect_to interviews_url, notice: '削除に成功しました。' }
-      format.json { head :no_content }
-    end
+    redirect_to interviews_url, notice: '削除に成功しました。'
   end
 
   private
