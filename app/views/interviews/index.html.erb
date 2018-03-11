@@ -14,7 +14,7 @@
   <tbody>
     <% @user.interviews.each do |interview| %>
       <tr>
-        <td><%= interview.date %></td>
+        <td><%= l(interview.date, format: :long) %></td>
         <td><%= interview.availability_i18n %></td>
         <td><%= link_to '編集', edit_interview_path(interview) %></td>
         <td><%= link_to '削除', interview, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
