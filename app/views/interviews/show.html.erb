@@ -11,4 +11,4 @@
 </p>
 
 <%= link_to '編集', edit_interview_path(@interview) %> |
-<%= link_to '戻る', interviews_path %>
+<%= link_to '戻る', interviews_path(:id => @interview.user_id) %>
