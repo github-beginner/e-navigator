@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <span class="b">日時:</span>
+  <%= @interview.date %>
+</p>
+
+<p>
+  <span class="b">可否:</span>
+  <%= @interview.availability_i18n %>
+</p>
+
+<%= link_to '編集', edit_interview_path(@interview) %> |
+<%= link_to '戻る', interviews_path %>

@@ -18,6 +18,9 @@ ja:
         sex: 性別
         remember_me: 保存する
         current_password: 現在のパスワード
+      interview:
+        date: 日時
+        availability: 可否
     models:
       user: ユーザー
   date:
@@ -221,4 +224,9 @@ ja:
       sex:
         man: 男性
         woman: 女性
+    interview:
+      availability:
+        accept: 許可
+        reject: 拒否
+        reservation: 保留
 

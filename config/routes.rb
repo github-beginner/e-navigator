@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :interviews
   get 'users', :to => 'users#index', :as => :user_root
   root :to => 'users#index'
   devise_for :users
