@@ -2,7 +2,8 @@
 
 <h1><%= @user.name %>さんの面接一覧</h1>
 
-<p><span class="b">現在の面接日時:</span><%= l(@user.interviews.find_by(availability: 'accept')&.date, format: :long) %></p>
+<p><span class="b">現在の面接日時:</span>
+<%= l(@user.interviews.find_by(availability: 'accept')&.date, format: :long) %></p>
 <p>面接日程を変更する場合は以下から選んでください。</p>
 
 <table>
@@ -17,7 +18,10 @@
     <% @user.interviews.each do |interview| %>
       <% if interview.date.strftime("%Y%m%d%H%M").to_i > Time.zone.now.strftime("%Y%m%d%H%M").to_i %>
         <tr>
-          <td><%= link_to l(interview.date, format: :long), interview_path(interview, params: { interview: { availability: 'accept' } }, :user_id => interview.user_id), method: :patch, data: { confirm: '面接を承認しますか？' } %></td>
+          <td><%= link_to l(interview.date, format: :long),
+          interview_path(interview, params: { interview: { availability: 'accept' } }, :user_id => interview.user_id),
+          method: :patch,
+          data: { confirm: '面接を承認しますか？' } %></td>
         </tr>
       <% end %>
     <% end %>
