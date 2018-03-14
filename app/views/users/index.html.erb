@@ -1,7 +1,4 @@
-<p id="notice"><%= notice %></p>
-<%= link_to "プロフィール",  edit_user_registration_path, method: :get %>
-<%= link_to "面接一覧",  interviews_path, method: :get %>
-<%= link_to "ログアウト",  destroy_user_session_path, method: :delete %>
+<%= render :partial => 'shared/header' %>
 
 <h1>ユーザー一覧</h1>
 <table>
@@ -23,6 +20,7 @@
         <td><%= user.age  %></td>
         <td><%= user.sex_i18n  %></td>
         <td><%= user.school  %></td>
+        <td><%= link_to "面接一覧",  interviews_path(id: user.id), method: :get %></td>
       </tr>
     <% end %>
   </tbody>

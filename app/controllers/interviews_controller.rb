@@ -4,7 +4,10 @@ class InterviewsController < ApplicationController
 
   # GET /interviews
   def index
-    @user = current_user
+    @user = User.find(params[:id])
+    unless current_user == @user
+      render :index_for_others
+    end
   end
 
   # GET /interviews/1
@@ -32,6 +35,7 @@ class InterviewsController < ApplicationController
 
   # PATCH/PUT /interviews/1
   def update
+    Interview.where(user_id: params[:user_id]).where(availability: 'accept').update_all(availability: 'reject')
     if @interview.update(interview_params)
       redirect_to @interview, notice: '更新に成功しました。'
     else
@@ -48,11 +52,11 @@ class InterviewsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_interview
-      @interview = current_user.interviews.find(params[:id])
+      @interview = Interview.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interview_params
-      params.require(:interview).permit(:date)
+      params.require(:interview).permit(:date, :availability)
     end
 end

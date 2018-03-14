@@ -2,4 +2,4 @@
 
 <%= render 'form', interview: @interview %>
 
-<%= link_to '戻る', interviews_path %>
+<%= link_to '戻る', interviews_path(:id => @interview.user_id) %>

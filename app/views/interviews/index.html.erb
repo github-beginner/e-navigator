@@ -1,7 +1,4 @@
-<p id="notice"><%= notice %></p>
-<%= link_to "プロフィール",  edit_user_registration_path, method: :get %>
-<%= link_to "面接一覧",  interviews_path, method: :get %>
-<%= link_to "ログアウト",  destroy_user_session_path, method: :delete %>
+<%= render :partial => 'shared/header' %>
 
 <h1><%= @user.name %>さんの面接一覧</h1>
 
@@ -17,7 +14,7 @@
   <tbody>
     <% @user.interviews.each do |interview| %>
       <tr>
-        <td><%= interview.date %></td>
+        <td><%= l(interview.date, format: :long) %></td>
         <td><%= interview.availability_i18n %></td>
         <td><%= link_to '編集', edit_interview_path(interview) %></td>
         <td><%= link_to '削除', interview, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
