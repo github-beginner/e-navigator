@@ -37,6 +37,12 @@ class InterviewsController < ApplicationController
   def update
     Interview.where(user_id: params[:user_id]).where(availability: 'accept').update_all(availability: 'reject')
     if @interview.update(interview_params)
+      if interview_params[:availability] == 'accept'
+        @user = User.find(params[:user_id])
+        @accepted_interview = Interview.find_by(availability: 'accept')
+        UserMailer.decision_email(@user,@accepted_interview).deliver_later
+        UserMailer.decision_email(current_user,@accepted_interview).deliver_later
+      end
       redirect_to @interview, notice: '更新に成功しました。'
     else
       render :edit 
