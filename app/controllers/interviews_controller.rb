@@ -49,6 +49,12 @@ class InterviewsController < ApplicationController
     redirect_to interviews_url, notice: '削除に成功しました。'
   end
 
+  def send_request_email
+    @user = User.find(request_email_params[:id])
+    @request_user = current_user
+    UserMailer.request_email(@user, @request_user).deliver_later
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_interview
@@ -58,5 +64,8 @@ class InterviewsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def interview_params
       params.require(:interview).permit(:date, :availability)
+    end
+    def request_email_params
+      params.require(:user).permit(:id)
     end
 end

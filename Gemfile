@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Use dotenv for reading env-variables
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 # Use devise for authentication
 gem 'devise'
 # Use enum_help for translation
