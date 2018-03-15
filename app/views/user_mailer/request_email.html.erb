@@ -19,9 +19,11 @@
 
       <tbody>
         <% @request_user.interviews.each do |interview| %>
-          <tr>
-            <td><%= l(interview.date, format: :long) %></td>
-          </tr>
+          <% if interview.availability == 'reservation' %>
+            <tr>
+              <td><%= l(interview.date, format: :long) %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
