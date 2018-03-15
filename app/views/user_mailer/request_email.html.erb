@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @user.name %>様、面接の希望日程が登録されました。</h1>
+    <h1>面接の希望日程が登録されました。</h1>
     <p>
       申請ユーザー: <%= @request_user.name %>
       <br>
@@ -25,6 +25,6 @@
         <% end %>
       </tbody>
     </table>
-    <p>この面接を承認するには、<%= @url %>をクリックしてください。</p>
+    <p>この面接を承認するには、<%= @url %>からログインしてください</p>
   </body>
 </html>

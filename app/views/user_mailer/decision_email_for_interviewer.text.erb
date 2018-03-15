@@ -1,0 +1,9 @@
+面接の日程が承認されました。
+===============================================
+
+面接予定日時: <%= l(@request_user.interviews.find_by(availability: 'accept').date, format: :long) %>
+承認ユーザー: <%= @interviewer.name %>
+申請ユーザー: <%= @request_user.name %>
+
+場所は、株式会社フィードフォースで行います。
+今後の連絡は担当人事の方から再度連絡させていただきます。

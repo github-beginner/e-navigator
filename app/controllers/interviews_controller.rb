@@ -38,10 +38,10 @@ class InterviewsController < ApplicationController
     Interview.where(user_id: params[:user_id]).where(availability: 'accept').update_all(availability: 'reject')
     if @interview.update(interview_params)
       if interview_params[:availability] == 'accept'
-        @user = User.find(params[:user_id])
-        @accepted_interview = Interview.find_by(availability: 'accept')
-        UserMailer.decision_email(@user,@accepted_interview).deliver_later
-        UserMailer.decision_email(current_user,@accepted_interview).deliver_later
+        @request_user = User.find(params[:user_id])
+        @interviewer = current_user
+        UserMailer.decision_email_for_request_user(@request_user, @interviewer).deliver_later
+        UserMailer.decision_email_for_interviewer(@request_user, @interviewer).deliver_later
       end
       redirect_to @interview, notice: '更新に成功しました。'
     else
@@ -56,9 +56,9 @@ class InterviewsController < ApplicationController
   end
 
   def send_request_email
-    @user = User.find(request_email_params[:id])
+    @interviewer = User.find(request_email_params[:id])
     @request_user = current_user
-    UserMailer.request_email(@user, @request_user).deliver_later
+    UserMailer.request_email(@interviewer, @request_user).deliver_later
   end
 
   private

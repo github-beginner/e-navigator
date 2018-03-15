@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>面接の日程が承認されました。</h1>
+    <p>
+      面接予定日時: <%= l(@request_user.interviews.find_by(availability: 'accept').date, format: :long) %>
+      <br>
+      承認ユーザー: <%= @interviewer.name %>
+      <br>
+      申請ユーザー: <%= @request_user.name %>
+      <br>
+    </p>
+    <p>
+      場所は、株式会社フィードフォースで行います。
+      <br>
+      今後の連絡は担当人事の方から再度連絡させていただきます。
+    </p>
+  </body>
+</html>
