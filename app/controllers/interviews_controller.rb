@@ -55,9 +55,9 @@ class InterviewsController < ApplicationController
   end
 
   def send_request_email
-    @interviewer = User.find(request_email_params[:id])
-    @request_user = current_user
-    UserMailer.request_email(@interviewer, @request_user).deliver_later
+    interviewer = User.find(request_email_params[:id])
+    request_user = current_user
+    UserMailer.request_email(interviewer, request_user).deliver_later
     redirect_to interviews_url(id: current_user.id), notice: '面接日程が申請されました。'
   end
 
