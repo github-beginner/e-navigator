@@ -27,7 +27,7 @@
 
 <%= link_to '新規面接作成', new_interview_path %>
 
-<%= form_for(@user, :url => {:controller => :interviews, :action => :send_request_email}) do |f| %>
+<%= form_for(@user, :url => { :controller => :interviews, :action => :send_request_email }, :html => { :method => 'GET' }) do |f| %>
   <%= f.collection_select(:id, User.where.not(id: current_user.id), :id, :name) %>
   <%= f.submit('申請する') %>
 <% end %>
