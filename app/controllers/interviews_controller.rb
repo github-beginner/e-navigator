@@ -35,16 +35,11 @@ class InterviewsController < ApplicationController
 
   # PATCH/PUT /interviews/1
   def update
-    if interview_params[:availability] == 'accept'
-      Interview.where(user_id: params[:user_id]).where(availability: 'accept').update_all(availability: 'reject')
-    end
     if @interview.update(interview_params)
       if interview_params[:availability] == 'accept'
-        @request_user = User.find(params[:user_id])
-        @request_user.interviews.where(availability: 'reservation').update_all(availability: 'reject')
-        @interviewer = current_user
-        UserMailer.decision_email_for_request_user(@request_user, @interviewer).deliver_later
-        UserMailer.decision_email_for_interviewer(@request_user, @interviewer).deliver_later
+        request_user = User.find(params[:user_id])
+        interviewer = current_user
+        decision_email(request_user, interviewer)
       end
       redirect_to @interview, notice: '更新に成功しました。'
     else
@@ -64,6 +59,11 @@ class InterviewsController < ApplicationController
     UserMailer.request_email(@interviewer, @request_user).deliver_later
   end
 
+  def decision_email(request_user, interviewer)
+    UserMailer.decision_email_for_interviewer(request_user, interviewer).deliver_later
+    UserMailer.decision_email_for_request_user(request_user, interviewer).deliver_later
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_interview
@@ -74,6 +74,7 @@ class InterviewsController < ApplicationController
     def interview_params
       params.require(:interview).permit(:date, :availability)
     end
+
     def request_email_params
       params.require(:user).permit(:id)
     end

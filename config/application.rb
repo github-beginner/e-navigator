@@ -33,9 +33,10 @@ module ENavigator
     config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
       port:                 587,
-      user_name:            ENV['email'],
-      password:             ENV['email_pass'],
+      user_name:            ENV['EMAIL'],
+      password:             ENV['EMAIL_PASS'],
       authentication:       'plain',
-      enable_starttls_auto: true  }
+      enable_starttls_auto: true  
+      }
   end
 end
