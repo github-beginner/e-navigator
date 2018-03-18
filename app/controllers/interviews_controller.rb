@@ -4,6 +4,7 @@ class InterviewsController < ApplicationController
 
   # GET /interviews
   def index
+    p params
     @user = User.find(params[:id])
     unless current_user == @user
       render :index_for_others
@@ -57,6 +58,7 @@ class InterviewsController < ApplicationController
     @interviewer = User.find(request_email_params[:id])
     @request_user = current_user
     UserMailer.request_email(@interviewer, @request_user).deliver_later
+    redirect_to interviews_url(id: current_user.id), notice: '面接日程が申請されました。'
   end
 
   def decision_email(request_user, interviewer)
