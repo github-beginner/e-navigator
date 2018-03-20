@@ -61,11 +61,6 @@ class InterviewsController < ApplicationController
     redirect_to interviews_url(id: current_user.id), notice: '面接日程が申請されました。'
   end
 
-  def decision_email(request_user, interviewer)
-    UserMailer.decision_email_for_interviewer(request_user, interviewer).deliver_later
-    UserMailer.decision_email_for_request_user(request_user, interviewer).deliver_later
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_interview
@@ -80,4 +75,10 @@ class InterviewsController < ApplicationController
     def request_email_params
       params.require(:user).permit(:id)
     end
+
+    def decision_email(request_user, interviewer)
+      UserMailer.decision_email_for_interviewer(request_user, interviewer).deliver_later
+      UserMailer.decision_email_for_request_user(request_user, interviewer).deliver_later
+    end
+
 end
