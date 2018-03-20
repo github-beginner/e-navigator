@@ -4,7 +4,6 @@ class InterviewsController < ApplicationController
 
   # GET /interviews
   def index
-    p params
     @user = User.find(params[:id])
     unless current_user == @user
       render :index_for_others
